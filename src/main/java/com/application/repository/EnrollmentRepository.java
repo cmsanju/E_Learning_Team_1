@@ -9,11 +9,13 @@ import com.application.model.Enrollment;
 
 public interface EnrollmentRepository extends CrudRepository<Enrollment, Integer>
 
+
 {
     public Enrollment findByCoursename(String coursename);
-	
+
 	public Enrollment findByCourseid(String courseid);
-	
+
+	public Enrollment findFirstByEnrolleduserid(String enrolleduserid);
     public List<Enrollment> findByEnrolledusername(String enrolledusername);
 	
 	public List<Enrollment> findByEnrolleduserid(String enrolleduserid);
@@ -35,6 +37,7 @@ public interface EnrollmentRepository extends CrudRepository<Enrollment, Integer
     public List<Enrollment> findBySkilllevel(String skilllevel);
 	
 	public List<Enrollment> findByLanguage(String language);
+
 	
 	@Transactional
 	@Modifying

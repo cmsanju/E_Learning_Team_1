@@ -2,6 +2,7 @@ package com.application.services;
 
 import java.util.List;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.application.model.User;
@@ -47,4 +48,7 @@ public class UserService
 	{
 		return (List<User>)userRepo.findProfileByEmail(email);
 	}
+
+
+
 }
