@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.application.model.Enrollment;
 
 public interface EnrollmentRepository extends CrudRepository<Enrollment, Integer>
+
 {
     public Enrollment findByCoursename(String coursename);
 	
