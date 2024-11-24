@@ -26,7 +26,7 @@
     border: none;
     border-radius: 1.5rem;
     padding: 1%;
-    border: 1px solid #440707;
+    border: 1px solid #1c1ca1;
     color: #440707;
     font-weight: 600;
     font-size: 20px;
@@ -86,7 +86,7 @@
 .highlight1, .highlight2{
     width: 100px;
     color: #fdfdfd;
-    background-color: #f14747;
+    background-color: #1c1ca1;;
     border: 2px solid #440707;
     border-top-left-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
@@ -129,7 +129,7 @@ input
     padding: 15px 15px 15px 30px;
     font-size: 20px;
     text-align: right;
-    background-color: #851313;
+    background-color: #1c1ca1;;
     width: 100%;
   }
   .logoutbtn{

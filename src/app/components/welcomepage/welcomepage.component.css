@@ -12,7 +12,7 @@
 }
 .header
 {
-	background-color: #851313;
+	background-color: #1c1ca1;
 	position: relative;
 	height: 500px;
 	width: 100%;
@@ -167,7 +167,7 @@ background: linear-gradient(to top, #ff9933 0%, #ff6600 100%);
 #create_acc:hover
 {
 	padding: 6px 15px;
-	background: linear-gradient(to bottom, #ff9933 0%, #ff6600 100%);
+	background: linear-gradient(to bottom, rgb(129, 26, 167) 0%, rgb(129, 26, 167) 100%);
 	color: #fff;
     border: none;
     border-radius: 15px;
@@ -197,7 +197,7 @@ background: linear-gradient(to top, #ff9933 0%, #ff6600 100%);
 #log:hover
 {
 	padding: 6px 15px;
-	background: linear-gradient(to bottom, #ff9933 0%, #ff6600 100%);
+	background: linear-gradient(to bottom, rgb(129, 26, 167) 0%,rgb(129, 26, 167) 100%);
 	color: #fff;
     border: none;
     border-radius: 15px;
@@ -346,9 +346,14 @@ background: linear-gradient(to top, #ff9933 0%, #ff6600 100%);
 	font-weight: bold;
 }
 .automation{
+	mix-blend-mode: multiply; 
+	object-fit: cover; 
 	margin-top: -35%;
 	margin-left: 60%;
+	box-shadow: 0 10px 10px rgba(15, 22, 225, 0.3); 
+	border-radius: 35%;
 }
+  
 .fa-caret-down{
 	right: 48%;
 	position: absolute;
