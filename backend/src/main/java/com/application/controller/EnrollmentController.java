@@ -7,6 +7,7 @@ import com.application.services.EnrollmentService;
 
 @RestController
 @RequestMapping("/enrollments")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EnrollmentController {
 
     @Autowired
@@ -23,6 +24,7 @@ public class EnrollmentController {
 //    }
 
     @PostMapping("/{userid}/send-email")
+    @CrossOrigin(origins = "http://localhost:4200")
     public String sendEnrollmentEmail(@PathVariable String userid) {
         try {
             enrollmentService.sendEnrollmentEmail(userid);

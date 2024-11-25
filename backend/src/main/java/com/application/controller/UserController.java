@@ -145,7 +145,6 @@ public class UserController
 		    professorObj = professorService.fetchProfessorByEmail(email);
 		    enrolledUser = professorObj.getProfessorname();
 		}
-		
 		Set<String> enrollmentStatus = new LinkedHashSet<>();
 		int flag = 0;
 		OUTER:for(Enrollment enrollmentObj : enrollments)
@@ -170,7 +169,6 @@ public class UserController
 		wishlistObj = wishlistService.addToWishlist(wishlist);
 		return new ResponseEntity<Wishlist>(wishlistObj, HttpStatus.OK);
 	}
-	
 	@GetMapping("/getwishliststatus/{coursename}/{email}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<Set<String>> getWishlistStatus(@PathVariable String coursename, @PathVariable String email) throws Exception
