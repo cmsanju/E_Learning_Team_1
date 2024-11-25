@@ -13,7 +13,7 @@
     border-radius: 15px;
     padding: 0px;
     transition: transform .2s;
-    box-shadow: 5px 5px 25px 8px rgb(147, 158, 147);
+    box-shadow: 3px 3px 10px 3px rgb(49, 2, 239);
   }
   #bloodCards:hover
   {
@@ -70,7 +70,7 @@
 }
 .btn-primary
 {
-   background-color: rgb(17, 93, 95);
+   background-color: #1c1ca1;
    border-radius: 10px;
    font-weight: bold;
 }

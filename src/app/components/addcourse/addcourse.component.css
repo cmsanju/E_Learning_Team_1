@@ -10,7 +10,7 @@
 .register-right{
     background: #ffffff;
     border-radius: 15px;
-    box-shadow: 5px 5px 35px 8px rgb(147, 158, 147); 
+    box-shadow: 3px 3px 10px 3px rgb(9, 1, 238); 
     margin-left: auto;
     margin-right: auto;
 }
@@ -27,7 +27,7 @@
     border-radius: 1.5rem;
     padding: 1%;
     border: 1px solid #440707;
-    color: #440707;
+    color: #2b02a9;
     font-weight: 600;
     font-size: 20px;
     width: 30%;
@@ -50,10 +50,10 @@
 .loginbtn:hover{
     cursor: pointer;
     background: #ffffff;
-    color: #0a3d3b;
+    color: #5c018d;
 }
 .btnRegister:hover{
-    background: #440707;
+    background: #400177;
     color: #fff;
     cursor: pointer;
 }
@@ -101,8 +101,8 @@
     font-size: 35px;
     letter-spacing: 1.5px;
     margin-bottom: -15%;
-    font-family: 'Aladin', cursive;
-    color: #413613;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #6b0590;
 }
 #home-tab
 {

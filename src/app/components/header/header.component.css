@@ -10,7 +10,7 @@
     padding: 15px 15px 15px 30px;
     font-size: 20px;
     text-align: right;
-    background-color: #851313;
+    background-color: rgb(13, 26, 122);
     width: 100%;
   }
   .logoutbtn{
@@ -24,7 +24,7 @@
   }
   .logoutbtn:hover{
     cursor: pointer;
-    background-color: #f03e3e;
+    background-color: #6d048c;
     padding: 5px 10px 5px 10px;
     border-radius: 15px;
   }

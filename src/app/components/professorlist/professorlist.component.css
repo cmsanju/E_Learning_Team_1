@@ -14,7 +14,7 @@
     width: 40%;
     height: 60%;
     transition: transform .2s;
-    box-shadow: 5px 5px 25px 8px rgb(147, 158, 147);
+    box-shadow: 2px 2px 10px 2px rgb(48, 3, 230);
   }
   #bloodCards:hover
   {
@@ -43,7 +43,7 @@
     height: 180px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background-color: rgb(17, 90, 85);
+    background-color: rgb(2, 71, 131);
 }
 .circle{
     background-color: rgb(253, 255, 138);
@@ -108,8 +108,8 @@
     font-weight: bolder;
     font-size: 40px;
     margin-top: 2%;
-    color: darkgreen;
-    font-family: 'Aladin', cursive;
+    color: rgb(126, 4, 150);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     letter-spacing: 1px;
     margin-left: 42%;
 }

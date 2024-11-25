@@ -1,12 +1,12 @@
 <app-header></app-header>
 
-<div *ngIf="currRole === 'user'" class="heading-text" style="color: darkgreen;"><b><i style="color: darkred;" class="fa fa-heart"></i> User WishList</b></div>
-<div *ngIf="currRole === 'professor'" class="heading-text" style="color: darkgreen;"><b><i style="color: darkred;" class="fa fa-heart"></i> Professor WishList</b></div>
+<div *ngIf="currRole === 'user'" class="heading-text" style="color: rgb(13, 26, 122);"><b><i style="color: darkred;" class="fa fa-heart"></i> User WishList</b></div>
+<div *ngIf="currRole === 'professor'" class="heading-text" style="color: rgb(13, 26, 122);"><b><i style="color: darkred;" class="fa fa-heart"></i> Professor WishList</b></div>
 <div class="row">
     <div  *ngFor="let course of wishlist | async" class="col-4 card" id="bloodCards">
         <div class="img-block">
             <div class="circle">
-                <img *ngIf="course.coursetype === 'Youtube'" class="bloodimg" [src]="'assets/img/youtube.png'" width="140" height="140">
+                <img *ngIf="course.coursetype === 'Youtube'" class="bloodimg" [src]="'assets/img/ytube.gif'" width="150" height="140">
                 <img *ngIf="course.coursetype === 'Website'" class="bloodimg" [src]="'assets/img/website.png'" width="140" height="140">
             </div>
         </div>

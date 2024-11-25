@@ -9,7 +9,7 @@
         <!--<iframe width="100%" ng-src="getSafeUrl(data.youtubeurl)" frameborder="0 " allowfullscreen></iframe>-->
         <!--<embed height="250" width="250" [src]="data.youtubeurl">-->
           <youtube-player style="margin-right: 5%;" [videoId]="data.youtubeurl" suggestedQuality="highres" [height]="180" [width]="300"></youtube-player>
-          <div class="card-body" id="youtubecard" (click)="getcoursedetails(data.coursename)" style="box-shadow: 2px 2px 15px 8px rgb(147, 158, 147); margin-right: 5%; margin-bottom: 10%; width: 300px; background-color: white;">
+          <div class="card-body" id="youtubecard" (click)="getcoursedetails(data.coursename)" style="box-shadow: 2px 2px 10px 3px rgb(2, 50, 239); margin-right: 5%; margin-bottom: 10%; width: 300px; background-color: white;">
           <h4 class="card-title text-center" style="margin-bottom: 4%;"><b>{{data.coursename}}</b></h4>
           <h6 class="text-center" style="margin-left: auto; margin-right: auto; padding: 5px 10px 5px 10px; background-color: darkgoldenrod; border-radius: 5px; font-weight: bold; width: 55%; color: white;">{{data.courseid}}</h6>
           <div><b style="color: darkred; font-size: large; margin-bottom: 1%;">Instructor: </b><b>{{data.instructorname}}</b></div>

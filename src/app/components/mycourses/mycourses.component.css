@@ -2,13 +2,13 @@
 
 .btn-primary
 {
-   background-color: rgb(17, 93, 95);
+   background-color: rgb(13, 26, 122);
    border-radius: 10px;
    font-weight: bold;
 }
 .btn-primary:hover
 {
-   background-color: rgb(9, 40, 41);
+   background-color: rgb(99, 4, 122);
    cursor: pointer;
 }
 .heading-text
@@ -16,7 +16,7 @@
     font-weight: bolder;
     font-size: 40px;
     margin-top: 3%;
-    color: darkgreen;
+    color: rgb(78, 4, 83);
     font-family: 'Aladin', cursive;
     letter-spacing: 1px;
     margin-left: 42%;

@@ -2,24 +2,24 @@
 {
    margin-bottom: 3%; 
    font-weight: bolder; 
-   color: darkgreen;
+   color: rgb(164, 4, 170);
    font-family: Georgia, 'Times New Roman', Times, serif;
    font-size: 25px;
 }
 .btn-primary
 {
-   background-color: rgb(17, 93, 95);
+   background-color: rgb(19, 4, 231);
    border-radius: 10px;
    font-weight: bold;
 }
 .btn-primary:hover
 {
-   background-color: rgb(9, 40, 41);
+   background-color: rgb(106, 3, 109);
    cursor: pointer;
 }
 .btn-secondary{
    border-radius: 10px;
-   background-color: rgb(30, 116, 30);
+   background-color: rgb(3, 6, 151);
    font-weight: bold;
    cursor: context-menu;
  }
@@ -28,6 +28,6 @@
  }
  #enrollsuccessbtn:hover
  {
-   color: rgb(9, 40, 41);
+   color: rgb(111, 2, 130);
    background-color: white;
  }
