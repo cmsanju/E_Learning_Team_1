@@ -1,10 +1,5 @@
 # ElearningManagement ❤️
 
-![](https://img.shields.io/github/languages/count/gowthamrajk/ElearningManagementSystem)   ![](https://img.shields.io/github/languages/top/gowthamrajk/ElearningManagementSystem)
-
-### For more such developments, visit my [Portfolio](https://gowthamrajk.github.io)
-
-### 🌎 Visit Demo : [Elearning Management System](https://youtu.be/-s_-_Tz866w)
 
 ## 🔭 Features :
 
@@ -67,8 +62,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests 🚀
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
+Run `ng test` to execute the unit tests .
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
@@ -418,18 +412,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [<img align="left" alt="GowthamRaj  | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
 [<img align="left" alt="GowthamRaj  | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />][instagram]
 [![](https://img.shields.io/badge/9698382306-25D366?style=social&logo=whatsapp&logoColor=green)]()
-
 <br>
-
-## Copyright-and-license 📌
-
-**Code and documentation Copyright 2021 : Gowthamraj K**
-
-[website1]: https://sites.google.com/view/code-jamm
-[hackerrank]: https://www.hackerrank.com/gowthamraj692
-[website]: https://github.com/gowthamrajk
-[twitter]: https://twitter.com/Gowtham29341737
-[youtube]: https://www.youtube.com/channel/UC_Q5Zet9Oz-UVAeJ-oE_uGQ?view_as=subscriber
-[instagram]: https://instagram.com/gow_t_h_a_m_r_a_j
-[linkedin]: https://www.linkedin.com/in/gowtham-kittusamy-54b835174/
 
