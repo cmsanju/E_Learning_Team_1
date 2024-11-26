@@ -41,7 +41,12 @@ export class FullcourseComponent implements OnInit {
 
     this.chapterlist = this._service.getChappterListByCourseName(this.courseName);
     this.courselist = this._service.getCourseListByName(this.courseName);
+    this.getChapterDetails();
 
+  }
+
+  getChapterDetails() {
+    console.log('Chapter data:', this.chapter);
   }
 
   openOverview()
