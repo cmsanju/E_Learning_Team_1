@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.application.model.Chapter;
 import com.application.model.Course;
 import com.application.model.Professor;
-import com.application.model.User;
 import com.application.model.Wishlist;
 import com.application.services.ChapterService;
 import com.application.services.CourseService;

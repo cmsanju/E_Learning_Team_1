@@ -1,12 +1,6 @@
 package com.application.services;
-
 import com.application.model.Document;
 import com.application.repository.DocumentRepository;
-import com.application.model.Chapter;
-import com.application.repository.ChapterRepository;
-import com.application.model.Professor;
-import com.application.repository.ProfessorRepository;
-
 import org.springframework.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,59 +9,37 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
-
 @Service
 @Slf4j
 public class DocumentService {
-
     @Autowired
     private DocumentRepository documentRepository;
-
-    @Autowired
-    private ChapterRepository chapterRepository;
-
-    @Autowired
-    private ProfessorRepository professorRepository;
-
     @Transactional
-    public Document storeDocument(MultipartFile file, int chapterId, String professorEmail) throws IOException {
+    public Document storeDocument(MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "File cannot be empty");
         }
-        
+
         if (file.getSize() > 10_000_000) { // 10MB example limit
             throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE, "File size exceeds limit");
         }
-
         String contentType = file.getContentType();
         if (contentType == null || !contentType.matches("^(application|image|text)/.*$")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file type");
         }
-
         String fileName = StringUtils.cleanPath(
-            Optional.ofNullable(file.getOriginalFilename()).orElse("unnamed_file")
+                Optional.ofNullable(file.getOriginalFilename()).orElse("unnamed_file")
         );
-
-        Chapter chapter = chapterRepository.findById(chapterId)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Chapter not found"));
-        Professor professor = professorRepository.findFirstByEmail(professorEmail)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Professor not found"));
-
         Document document = new Document();
         document.setFileName(fileName);
         document.setFileType(contentType);
         document.setData(file.getBytes());
         document.setUploadDate(LocalDateTime.now());
-        document.setChapter(chapter);
-        document.setProfessor(professor);
-
         return documentRepository.save(document);
     }
-
     @Transactional(readOnly = true)
     public Document getDocument(Long id) {
         return documentRepository.findById(id)
