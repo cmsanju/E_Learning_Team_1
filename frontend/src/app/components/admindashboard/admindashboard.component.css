@@ -40,7 +40,7 @@
   transition: background-color 1s ease-out;
   }
   .sidebar-navigation li:hover{
-    background-color: #c92d2d;
+    background-color: #b106b1;
     transform: scale(1.1);
     cursor: pointer;
   }
@@ -57,7 +57,7 @@
   }
   
   .sidebar-navigation li::before {
-    background-color: #13584f;
+    background-color: #0a027a;
     
     content: '';
     height: 100%;
@@ -163,5 +163,5 @@ font-family: 'aladin';
 letter-spacing: 1px;
 font-size: 20px;
 font-weight: 600;
-color: darkred;
+color: rgb(144, 3, 36);
 }
