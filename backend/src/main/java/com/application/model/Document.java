@@ -29,4 +29,12 @@ public class Document {
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime uploadDate;
+
+    @ManyToOne
+    @JoinColumn(name = "chapter_id", nullable = false)
+    private Chapter chapter;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_email", nullable = false)
+    private Professor professor;
 }

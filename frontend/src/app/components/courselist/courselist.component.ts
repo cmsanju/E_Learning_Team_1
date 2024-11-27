@@ -105,6 +105,7 @@ backToCourseList()
 
 enrollcourse(course : Course, loggedUser : string, currRole : string)
 {
+  console.log('Starting enrollment process for user:', loggedUser);
   this.enrollment.courseid = course.courseid;
   this.enrollment.coursename = course.coursename;
   this.enrollment.enrolledusertype = currRole;
@@ -133,10 +134,25 @@ enrollcourse(course : Course, loggedUser : string, currRole : string)
   this.userService.enrollNewCourse(this.enrollment,loggedUser,currRole).subscribe(
     data => {
       console.log("Course enrolled Successfully !!!");
+      
+      console.log('About to send enrollment email for user:', loggedUser);
+      this.sendEnrollmentEmail(loggedUser);
     },
     error => {
       console.log("Enrollment Failed !!!");
       console.log(error.error);
+    }
+  );
+}
+
+private sendEnrollmentEmail(userId: string) {
+  console.log('sendEnrollmentEmail method called with userId:', userId);
+  this.userService.sendEnrollmentEmail(userId).subscribe(
+    response => {
+      console.log('Enrollment email sent successfully');
+    },
+    error => {
+      console.error('Failed to send enrollment email:', error);
     }
   );
 }

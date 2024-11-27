@@ -1,6 +1,7 @@
 package com.application.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -31,4 +32,5 @@ public interface ProfessorRepository extends CrudRepository<Professor, Integer>
 	@Query(value = "update professor set status = 'reject' where email = ?1", nativeQuery = true)
 	public void rejectStatus(String email);
 	
+	Optional<Professor> findFirstByEmail(String email);
 }

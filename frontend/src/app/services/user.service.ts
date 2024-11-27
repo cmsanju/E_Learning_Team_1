@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Course } from '../models/course';
 import { Enrollment } from '../models/enrollment';
 import { Wishlist } from '../models/wishlist';
+import { switchMap } from 'rxjs/operators';
 
 const NAV_URL = environment.apiURL;
 
@@ -83,6 +84,10 @@ export class UserService {
   UpdateUserProfile(user : any):Observable<any>
   {
     return this._http.put<any>(`${NAV_URL}/updateuser`,user);
+  }
+
+  sendEnrollmentEmail(userId: string): Observable<any> {
+    return this._http.post(`${NAV_URL}/send-email/${userId}`, {});
   }
 
 }

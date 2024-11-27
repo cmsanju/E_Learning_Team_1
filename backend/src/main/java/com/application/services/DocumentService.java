@@ -2,6 +2,10 @@ package com.application.services;
 
 import com.application.model.Document;
 import com.application.repository.DocumentRepository;
+import com.application.model.Chapter;
+import com.application.repository.ChapterRepository;
+import com.application.model.Professor;
+import com.application.repository.ProfessorRepository;
 
 import org.springframework.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +27,14 @@ public class DocumentService {
     @Autowired
     private DocumentRepository documentRepository;
 
+    @Autowired
+    private ChapterRepository chapterRepository;
+
+    @Autowired
+    private ProfessorRepository professorRepository;
+
     @Transactional
-    public Document storeDocument(MultipartFile file) throws IOException {
+    public Document storeDocument(MultipartFile file, int chapterId, String professorEmail) throws IOException {
         if (file.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "File cannot be empty");
         }
@@ -42,11 +52,18 @@ public class DocumentService {
             Optional.ofNullable(file.getOriginalFilename()).orElse("unnamed_file")
         );
 
+        Chapter chapter = chapterRepository.findById(chapterId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Chapter not found"));
+        Professor professor = professorRepository.findFirstByEmail(professorEmail)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Professor not found"));
+
         Document document = new Document();
         document.setFileName(fileName);
         document.setFileType(contentType);
         document.setData(file.getBytes());
         document.setUploadDate(LocalDateTime.now());
+        document.setChapter(chapter);
+        document.setProfessor(professor);
 
         return documentRepository.save(document);
     }

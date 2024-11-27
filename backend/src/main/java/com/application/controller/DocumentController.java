@@ -24,9 +24,12 @@ public class DocumentController {
     private DocumentService documentService;
 
     @PostMapping("/upload")
-    public ResponseEntity<DocumentResponse> uploadDocument(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<DocumentResponse> uploadDocument(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("chapterId") int chapterId,
+            @RequestParam("professorEmail") String professorEmail) {
         try {
-            Document document = documentService.storeDocument(file);
+            Document document = documentService.storeDocument(file, chapterId, professorEmail);
             DocumentResponse response = new DocumentResponse(
                     document.getId(),
                     document.getFileName(),
