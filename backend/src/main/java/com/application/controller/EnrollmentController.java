@@ -37,11 +37,11 @@ public class EnrollmentController {
 //        }
 //    }
 
-    @PostMapping("/{userid}/send-email")
+    @PostMapping("/{email}/send-email")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Map<String, String>> sendEnrollmentEmail(@PathVariable String userid) {
+    public ResponseEntity<Map<String, String>> sendEnrollmentEmail(@PathVariable String email) {
         try {
-            enrollmentService.sendEnrollmentEmail(userid);
+            enrollmentService.sendEnrollmentEmailByEmail(email);
             Map<String, String> response = new HashMap<>();
             response.put("message", "Email sent successfully!");
             return ResponseEntity.ok(response);
