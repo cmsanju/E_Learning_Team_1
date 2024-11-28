@@ -42,6 +42,19 @@ export class RegistrationComponent implements OnInit {
         console.log("Registration Success");
         sessionStorage.setItem("username",this.user.username);
         sessionStorage.setItem("gender",this.user.gender);
+        sessionStorage.setItem("userId", data.userid);
+        
+        this._registrationService.sendWelcomeEmail(data.userid).subscribe(
+          response => {
+            console.log(`Welcome email sent successfully for ${this.user.email}`);
+            console.log('Email service response:', response);
+          },
+          error => {
+            console.error('Failed to send welcome email:', error);
+            console.error('Error details:', error);
+          }
+        );
+
         this._router.navigate(['/registrationsuccess']);
       },
       error => {
@@ -59,6 +72,17 @@ export class RegistrationComponent implements OnInit {
         console.log("Registration Success");
         sessionStorage.setItem("doctorname",this.professor.professorname);
         sessionStorage.setItem("gender",this.professor.gender);
+        sessionStorage.setItem("professorId", data.id);
+        
+        this._registrationService.sendWelcomeEmail(this.professor.email).subscribe(
+          response => {
+            console.log("Welcome email sent successfully");
+          },
+          error => {
+            console.error("Failed to send welcome email", error);
+          }
+        );
+
         this._router.navigate(['/registrationsuccess']);
       },
       error => {

@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="email address *" name="useremail" [(ngModel)]="user.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+                                <input type="email" class="form-control" placeholder="email address *" name="useremail" [(ngModel)]="user.email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                                 #useremail="ngModel"
                                 [class.is-invalid]="useremail.invalid && useremail.touched">
                                 <div *ngIf="useremail.errors && (useremail.invalid && useremail.touched)">

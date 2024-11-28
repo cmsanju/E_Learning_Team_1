@@ -14,7 +14,7 @@ export class RegistrationsuccessComponent implements OnInit {
   {
     setTimeout(() => {
       this.router.navigate(['login']);
-  }, 7000);
+  }, 3000);
   }
 
 }
