@@ -253,7 +253,7 @@
 .dashboard-card
 {
 background-color: white;
-border-radius: 10px;
+border-radius: 25px;
 border: none;
 width: 35%;
 transition: transform .4s;
@@ -268,7 +268,7 @@ padding: 3%;
 }
 .headtxt
 {
-  margin-left: -5%;
+  margin-left: 30%;
 }
 .circle{
 border-radius: 50%;

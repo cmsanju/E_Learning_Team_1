@@ -70,33 +70,74 @@
   
   <div class="home-section">
     <div class="container">
-      <div class="row">
-        <div class="headtxt" style="color: #9c08c8; font-weight: bolder; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; letter-spacing: 1px; font-size: 40px; text-align: center; margin: 1% auto;">
-          <b>"Welcome aboard! Your dashboard awaits.🚀"</b>
-        </div>        <div style="color: rgb(101, 9, 107); font-weight: bold; font-size: 22px; margin: 0% 0% 2% 29%;"><b></b></div>
-          <div class="dashboard-card"style="background-color: rgb(237, 237, 229); box-shadow: 3px 3px 10px 3px rgb(3, 31, 192);">
-            <div class="circle"><i id="icons" style="margin-left: 25px;" class="fa fa-trophy"></i></div>
-            <div class="text" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; letter-spacing: 1px; font-size: 35px; font-weight: bolder; color: rgb(60, 0, 123);">📘Courses</div>
-            <div class="sub-text" *ngFor="let course of courses | async">{{course}} courses available</div>
-          </div>
-          <div class="dashboard-card" style="background-color: rgb(237, 237, 229); box-shadow: 3px 3px 10px 3px rgb(3, 31, 192);">
-            <div class="circle"><i id="icons" style="margin-left: 15px;" class="fa fa-graduation-cap"></i></div>
-            <div class="text" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; letter-spacing: 1px; font-size: 35px; font-weight: bolder; color: rgb(60, 0, 123);">🧑‍🏫Leaners</div>
-            <div class="sub-text" *ngFor="let count of enrollmentcount | async">{{count}} enrollments have been <br>made by <b *ngFor="let enrollment of enrollments | async">{{enrollment}}</b> Learners</div>
-          </div>
-          <div class="dashboard-card" style="background-color: rgb(237, 237, 229); box-shadow: 3px 3px 10px 3px rgb(3, 31, 192);">
-            <div class="circle"><i id="icons" style="margin-left: 20px;" class="fa fa-list"></i></div>
-            <div class="text" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; letter-spacing: 1px; font-size: 35px; font-weight: bolder; color: rgb(60, 0, 123);">Chapters</div>
-            <div class="sub-text" *ngFor="let chapter of chapters | async">{{chapter}} courses are with its <br>detailed chapters</div>
-          </div>
-          <div class="dashboard-card" style="background-color: rgb(237, 237, 229); box-shadow: 3px 3px 10px 3px rgb(3, 31, 192);">
-            <div class="circle"><i id="icons" style="margin-left: 20px;" class="fa fa-heart"></i></div>
-            <div class="text" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; letter-spacing: 1px; font-size: 35px; font-weight: bolder; color: rgb(60, 0, 123);">Favourites</div>
-            <div class="sub-text" *ngFor="let wishlists of wishlist | async">{{wishlists}} courses are loved by <br>most of the Leaners </div>
-          </div>      
-      </div>
-    </div>
-  </div>
+        <div class="row">
+            <div class="headtxt">
+                <b>"Welcome aboard!Your dashboard awaits.🚀"</b>
+            </div>
 
-<br><br><br><br>
+            <!-- Main Dashboard Cards -->
+            <div class="dashboard-card" id="courses">
+                <div class="card-header">
+                  <img src="assets/img/courses.gif" alt="Courses" class="card-icon" style="width: 350px; height: 180px;">
+
+                </div>
+                <div class="text" style="color: #8e44ad;">📘 Courses</div>
+                <div class="sub-text">
+                    <ul>
+                        <li><b>Number:</b> 50+ available courses</li>
+                        <li><b>Categories:</b> Programming, Design, Marketing</li>
+                        <li><b>New Launch:</b> Python Advanced</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dashboard-card" id="learners">
+                <div class="card-header">
+                    <img src="assets/img/learner.gif" alt="Learners" class="card-icon" style="width: 350px; height: 180px;">
+                </div>
+                <div class="text" style="color: #27ae60;">🧑‍🏫 Learners</div>
+                <div class="sub-text">
+                    <ul>
+                        <li><b>Total:</b> 1500+ enrollments</li>
+                        <li><b>Active Learners:</b> 1200+ daily</li>
+                        <li><b>Top Performer:</b> John Doe</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dashboard-card" id="chapters">
+                <div class="card-header">
+                    <img src="assets/img/fav.gif" alt="Chapters" class="card-icon" style="width: 350px; height: 180px;">
+                </div>
+                <div class="text" style="color: #2980b9;">📘 Chapters</div>
+                <div class="sub-text">
+                    <ul>
+                        <li><b>Total:</b> 300+ chapters covered</li>
+                        <li><b>Detailed Sections:</b> Yes</li>
+                        <li><b>Interactive Examples:</b> Included</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dashboard-card" id="favourites">
+                <div class="card-header">
+                    <img src="assets/img/chapter.gif" alt="Favourites" class="card-icon"style="width: 350px; height: 180px;">
+                </div>
+                <div class="text" style="color: #e74c3c;">❤️ Favourites</div>
+                <div class="sub-text">
+                    <ul>
+                        <li><b>Top Courses:</b> ReactJS, NodeJS</li>
+                        <li><b>Favorite by:</b> 800+ learners</li>
+                        <li><b>Trending:</b> Java for Beginners</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+       
+        
+    </div>
+</div>
+
+
 <app-footer></app-footer>
