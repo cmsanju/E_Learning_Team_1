@@ -26,28 +26,37 @@
                                 <input type="text" class="form-control" placeholder="user name *" name="username" [(ngModel)]="user.username" required 
                                 #username="ngModel"
                                 [class.is-invalid]="username.invalid && username.touched">
-                                <small class="text-danger" [class.d-none]="username.valid || username.untouched"><b>required field</b></small>
+                                <small class="text-danger" [class.d-none]="username.valid || username.untouched">
+                                    <b *ngIf="username.errors?.required">Username is required.</b>
+                                    <b *ngIf="username.errors?.minlength">Username must be at least 3 characters long.</b>
+                                </small>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="gender *" name="usergender" [(ngModel)]="user.gender" required 
                                 #usergender="ngModel"
                                 [class.is-invalid]="usergender.invalid && usergender.touched">
-                                <small class="text-danger" [class.d-none]="usergender.valid || usergender.untouched"><b>required field</b></small>
+                                <small class="text-danger" [class.d-none]="usergender.valid || usergender.untouched">
+                                    <b *ngIf="usergender.errors?.required">Gender is required.</b>
+                                </small>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="your profession *" name="userprofession" [(ngModel)]="user.profession" required 
                                 #userprofession="ngModel"
                                 [class.is-invalid]="userprofession.invalid && userprofession.touched">
-                                <small class="text-danger" [class.d-none]="userprofession.valid || userprofession.untouched"><b>required field</b></small>
+                                <small class="text-danger" [class.d-none]="userprofession.valid || userprofession.untouched">
+                                    <b *ngIf="userprofession.errors?.required">Profession is required.</b>
+                                </small>
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Password *" name="pwd" [(ngModel)]="user.password" required 
                                 #userpassword="ngModel"
                                 [class.is-invalid]="userpassword.invalid && userpassword.touched">
                                 <div *ngIf="userpassword.errors && userpassword.invalid && userpassword.touched">
-                                  <small class="text-danger" *ngIf="userpassword.errors.required"><b>required field</b></small>
+                                    <small class="text-danger" *ngIf="userpassword.errors.required"><b>Password is required.</b></small>
+                                    <small class="text-danger" *ngIf="userpassword.errors.minlength"><b>Password must be at least 6 characters long.</b></small>
+                                    <small class="text-danger" *ngIf="userpassword.errors.pattern"><b>Password must contain at least one uppercase letter, one number, and one special character.</b></small>
                                 </div>
-                                <small style="color: gray; font-size: 10px;">atleast one uppercase, numeric digit, lowercase, special character, length of 6-20</small>
+                                <small style="color: gray; font-size: 10px;">At least one uppercase, numeric digit, lowercase, special character, length of 6-20.</small>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -56,30 +65,35 @@
                                 #useremail="ngModel"
                                 [class.is-invalid]="useremail.invalid && useremail.touched">
                                 <div *ngIf="useremail.errors && (useremail.invalid && useremail.touched)">
-                                    <small class="text-danger" *ngIf="useremail.errors.required"><b>required field</b></small>
-                                    <small class="text-danger" *ngIf="useremail.errors.pattern"><b>Invalid email Id</b></small>
-                                  </div>
+                                    <small class="text-danger" *ngIf="useremail.errors.required"><b>Email address is required.</b></small>
+                                    <small class="text-danger" *ngIf="useremail.errors.pattern"><b>Please enter a valid email address.</b></small>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="tel" maxlength="10" minlength="10" class="form-control" placeholder="mobile *" name="usermobile" [(ngModel)]="user.mobile" required 
                                 #usermobile="ngModel"
                                 [class.is-invalid]="usermobile.invalid && usermobile.touched">
-                                <small class="text-danger" [class.d-none]="usermobile.valid || usermobile.untouched"><b>required field</b></small>
+                                <small class="text-danger" [class.d-none]="usermobile.valid || usermobile.untouched">
+                                    <b *ngIf="usermobile.errors?.required">Mobile number is required.</b>
+                                    <b *ngIf="usermobile.errors?.minlength">Mobile number must be exactly 10 digits.</b>
+                                    <b *ngIf="usermobile.errors?.maxlength">Mobile number must be exactly 10 digits.</b>
+                                </small>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="address *" name="useraddress" [(ngModel)]="user.address" required 
                                 #useraddress="ngModel"
                                 [class.is-invalid]="useraddress.invalid && useraddress.touched">
-                                <small class="text-danger" [class.d-none]="useraddress.valid || useraddress.untouched"><b>required field</b></small>
+                                <small class="text-danger" [class.d-none]="useraddress.valid || useraddress.untouched">
+                                    <b *ngIf="useraddress.errors?.required">Address is required.</b>
+                                </small>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control"  placeholder="Confirm Password *" name="ConfirmPassword" (ngModel)="user.password" required 
+                                <input type="password" class="form-control" placeholder="Confirm Password *" name="ConfirmPassword" [(ngModel)]="user.password" required 
                                 #userconfirmPassword="ngModel"
                                 [class.is-invalid]="userconfirmPassword.invalid && userconfirmPassword.touched">
-                                <!--<div style="margin-top: -4%; margin-bottom: 3%;" *ngIf="userconfirmPassword.valid || userconfirmPassword.touched">
-                                    <small class="text-danger" *ngIf="(userconfirmPassword.value == userpassword.value) || userconfirmPassword.touched"><b>password not matched</b></small>
-                                </div>-->
-                                <small class="text-danger" [class.d-none]="(userconfirmPassword.value == userpassword.value) || userconfirmPassword.untouched"><b>password not matched</b></small>
+                                <small class="text-danger" [class.d-none]="(userconfirmPassword.value == userpassword.value) || userconfirmPassword.untouched">
+                                    <b>Password does not match.</b>
+                                </small>
                             </div>
                         </div>
                     </div>
