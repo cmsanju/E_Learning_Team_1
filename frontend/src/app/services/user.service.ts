@@ -38,7 +38,9 @@ export class UserService {
 
   enrollNewCourse(enrollment : Enrollment, loggedUser : string, currRole : string) : Observable<any>
   {
-    return this._http.post<any>(`${NAV_URL}/enrollnewcourse/`+loggedUser+"/"+currRole,enrollment);
+    return this._http.post<any>(`${NAV_URL}/enrollnewcourse/`+loggedUser+"/"+currRole,enrollment, {
+      responseType: 'text' as 'json'
+    });
   }
 
   addToWishlist(wishlist : Wishlist) : Observable<any>

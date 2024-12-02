@@ -1,6 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-//import * as $ from 'jquery';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable } from 'rxjs';
 import { Course } from 'src/app/models/course';
@@ -8,6 +7,7 @@ import { Enrollment } from 'src/app/models/enrollment';
 import { Wishlist } from 'src/app/models/wishlist';
 import { ProfessorService } from 'src/app/services/professor.service';
 import { UserService } from 'src/app/services/user.service';
+import { HttpClient } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -37,7 +37,7 @@ export class CourselistComponent implements OnInit  {
 
   @ViewChild('alertOne') alertOne: ElementRef | undefined;
   
-  constructor(private _service : ProfessorService, private userService : UserService, private _router : Router) { }
+  constructor(private _service : ProfessorService, private userService : UserService, private _router : Router, private http: HttpClient) { }
 
  ngOnInit() 
  {
@@ -103,58 +103,81 @@ backToCourseList()
     $("#coursedetailscard").hide();
 }
 
-enrollcourse(course : Course, loggedUser : string, currRole : string)
-{
-  console.log('Starting enrollment process for user:', loggedUser);
+enrollcourse(course: Course, loggedUser: string, currRole: string) {
+  console.log('=== Starting Enrollment Process ===');
+  console.log('Course:', course);
+  console.log('LoggedUser:', loggedUser);
+  console.log('Role:', currRole);
+
+  // Set enrollment data
   this.enrollment.courseid = course.courseid;
   this.enrollment.coursename = course.coursename;
+  this.enrollment.enrolleduserid = loggedUser;
+  this.enrollment.enrolledusername = sessionStorage.getItem('username')?.replace(/"/g, '') || '';
   this.enrollment.enrolledusertype = currRole;
   this.enrollment.instructorname = course.instructorname;
   this.enrollment.instructorinstitution = course.instructorinstitution;
   this.enrollment.enrolledcount = course.enrolledcount;
-  this.enrollment.youtubeurl = course.youtubeurl;
-  this.enrollment.websiteurl = course.websiteurl;
   this.enrollment.coursetype = course.coursetype;
+  this.enrollment.websiteurl = course.websiteurl;
+  this.enrollment.youtubeurl = course.youtubeurl;
   this.enrollment.skilllevel = course.skilllevel;
   this.enrollment.language = course.language;
   this.enrollment.description = course.description;
-  this.enrolledID = course.courseid;
-  this.enrolledURL = course.youtubeurl;
-  this.enrolledName = course.coursename;
-  this.enrolledInstructorName = course.instructorname;
-  this.enrolledStatus2 = "enrolled"
-  $("#enrollbtn").hide();
-  $("#enrolledbtn").show();
-  setTimeout(() => {
-    $("#youtubecoursecard").css('display','none');
-    $("#websitecoursecard").css('display','none');
-    $("#coursedetailscard").hide();
-    $("#enrollsuccess").show();
-  },5000);
-  this.userService.enrollNewCourse(this.enrollment,loggedUser,currRole).subscribe(
-    data => {
-      console.log("Course enrolled Successfully !!!");
+  
+  // Get current date
+  const today = new Date();
+  this.enrollment.enrolleddate = today.toISOString().split('T')[0];
+
+  console.log('Enrollment data being sent:', this.enrollment);
+
+  this.userService.enrollNewCourse(this.enrollment, loggedUser, currRole).subscribe({
+    next: (response) => {
+      console.log('=== Enrollment Success ===');
+      console.log('Response:', response);
+      $("#enrollsuccess").show();
       
-      console.log('About to send enrollment email for user:', loggedUser);
-      this.sendEnrollmentEmail(loggedUser);
+      // Refresh enrollment status
+      this.refreshEnrollmentStatus(course.coursename, loggedUser, currRole);
+      
+      setTimeout(() => {
+        console.log('=== Starting Email Process ===');
+        this.sendEnrollmentEmail();
+      }, 1000);
     },
-    error => {
-      console.log("Enrollment Failed !!!");
-      console.log(error.error);
+    error: (error) => {
+      console.error('=== Enrollment Failed ===');
+      console.error('Error details:', error);
+      if (error.status === 200) {
+        // If we get here, it means the enrollment actually succeeded
+        console.log('=== Enrollment Actually Succeeded ===');
+        $("#enrollsuccess").show();
+        
+        // Refresh enrollment status here too
+        this.refreshEnrollmentStatus(course.coursename, loggedUser, currRole);
+        
+        setTimeout(() => {
+          this.sendEnrollmentEmail();
+        }, 1000);
+      }
     }
-  );
+  });
 }
 
-private sendEnrollmentEmail(userId: string) {
-  console.log('sendEnrollmentEmail method called with userId:', userId);
-  this.userService.sendEnrollmentEmail(userId).subscribe(
-    response => {
-      console.log('Enrollment email sent successfully');
-    },
-    error => {
-      console.error('Failed to send enrollment email:', error);
+// Add this new method
+private refreshEnrollmentStatus(coursename: string, loggedUser: string, currRole: string) {
+  this.enrollmentstatus = this.userService.getEnrollmentStatus(coursename, loggedUser, currRole);
+  this.enrollmentstatus.subscribe(val => {
+    this.enrolledStatus = val;
+    console.log('Updated enrollment status:', this.enrolledStatus);
+    
+    // Update UI based on new status
+    if (this.enrolledStatus[0] === "enrolled") {
+      // Update any UI elements that show enrollment status
+      $("#enrollsuccess").show();
+      // You might need to update other UI elements here
     }
-  );
+  });
 }
 
 addToWishList(course : Course, loggedUser : string, currRole : string)
@@ -191,7 +214,6 @@ visitCourse(coursename : string)
   else if(this.enrolledStatus.slice(0, 1).shift() === "notenrolled")
   {
      $("#alertOne").modal('show');
-    //window.alert("You have not Enrolled to the course, Please Enroll it to proceed futher !!!");
   }
     
 }
@@ -232,5 +254,39 @@ gotoURL(url : string)
    },
    nav: true
  }
+
+sendEnrollmentEmail() {
+  const userEmail = sessionStorage.getItem('loggedUser');
+  console.log('=== Email Process Details ===');
+  console.log('Raw email from session:', userEmail);
+  
+  if (userEmail) {
+    const cleanEmail = userEmail.replace(/"/g, '');
+    console.log('Cleaned email:', cleanEmail);
+    const url = `http://localhost:8083/${cleanEmail}/send-email`;
+    console.log('Making request to:', url);
+    
+    this.http.post<{message?: string, error?: string}>(url, {})
+      .subscribe({
+        next: (response) => {
+          console.log('=== Email Success ===');
+          console.log('Response:', response);
+        },
+        error: (error) => {
+          console.error('=== Email Failed ===');
+          console.error('Error response:', error);
+          console.error('Error details:', error?.error);
+        }
+      });
+  } else {
+    console.error('No email found in session storage');
+    console.log('All session storage items:', {
+      loggedUser: sessionStorage.getItem('loggedUser'),
+      userId: sessionStorage.getItem('userId'),
+      username: sessionStorage.getItem('username'),
+      ROLE: sessionStorage.getItem('ROLE')
+    });
+  }
+}
 
 }

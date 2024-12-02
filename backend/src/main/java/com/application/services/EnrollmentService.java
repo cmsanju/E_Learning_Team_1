@@ -123,40 +123,93 @@ public class EnrollmentService {
 //		emailService.sendSimpleMail(mailData);
 //	}
 
-	public void sendEnrollmentEmail(String userid) {
-		User user = userRepository.findByUserid(userid);
-		if (user == null) {
-			throw new RuntimeException("No user found for userid: " + userid);
+	// public void sendEnrollmentEmail(String userid) {
+	// 	User user = userRepository.findByUserid(userid);
+	// 	if (user == null) {
+	// 		throw new RuntimeException("No user found for userid: " + userid);
+	// 	}
+
+	// 	String userEmail = user.getEmail();
+
+	// 	Enrollment enrollment = enrollmentRepo.findFirstByEnrolleduserid(userid);
+	// 	if (enrollment == null) {
+	// 		throw new RuntimeException("No enrollment found for userid: " + userid);
+	// 	}
+
+	// 	// Map Enrollment to DTO
+	// 	EnrollmentDetailsDTO detailsDTO = new EnrollmentDetailsDTO(
+	// 			enrollment.getCoursename(),
+	// 			enrollment.getInstructorname(),
+	// 			enrollment.getInstructorinstitution(),
+	// 			enrollment.getEnrolleddate(),
+	// 			enrollment.getCoursetype(),
+	// 			enrollment.getSkilllevel(),
+	// 			enrollment.getLanguage()
+	// 	);
+
+
+	// 	String emailContent = buildEmailContent(detailsDTO);
+
+
+	// 	MailData mailData = new MailData();
+	// 	mailData.setRecipient(userEmail);
+	// 	mailData.setSubject("Enrollment Confirmation");
+	// 	mailData.setMsgBody(emailContent);
+
+	// 	emailService.sendSimpleMail(mailData);
+	// }
+
+	public void sendEnrollmentEmailByEmail(String email) {
+		try {
+			System.out.println("=== Starting Email Service ===");
+			System.out.println("Received email: " + email);
+
+			// Get user
+			User user = userRepository.findByEmail(email);
+			if (user == null) {
+				System.out.println("No user found for email: " + email);
+				throw new RuntimeException("No user found with email: " + email);
+			}
+			System.out.println("Found user: " + user.getUserid());
+
+			// Get enrollment
+			String userId = user.getUserid();
+			Enrollment enrollment = enrollmentRepo.findFirstByEnrolleduserid(userId);
+			if (enrollment == null) {
+				System.out.println("No enrollment found for userId: " + userId);
+				throw new RuntimeException("No enrollment found for user ID: " + userId);
+			}
+			System.out.println("Found enrollment for course: " + enrollment.getCoursename());
+
+			// Create DTO
+			EnrollmentDetailsDTO detailsDTO = new EnrollmentDetailsDTO(
+					enrollment.getCoursename(),
+					enrollment.getInstructorname(),
+					enrollment.getInstructorinstitution(),
+					enrollment.getEnrolleddate(),
+					enrollment.getCoursetype(),
+					enrollment.getSkilllevel(),
+					enrollment.getLanguage()
+			);
+			System.out.println("Created DTO for course: " + detailsDTO.getCoursename());
+
+			// Send email
+			String emailContent = buildEmailContent(detailsDTO);
+			MailData mailData = new MailData();
+			mailData.setRecipient(email);
+			mailData.setSubject("Enrollment Confirmation");
+			mailData.setMsgBody(emailContent);
+			System.out.println("Attempting to send email to: " + email);
+
+			emailService.sendSimpleMail(mailData);
+			System.out.println("=== Email Sent Successfully ===");
+			
+		} catch (Exception e) {
+			System.err.println("=== Email Service Error ===");
+			System.err.println("Error message: " + e.getMessage());
+			e.printStackTrace();
+			throw new RuntimeException("Failed to process enrollment email: " + e.getMessage());
 		}
-
-		String userEmail = user.getEmail();
-
-		Enrollment enrollment = enrollmentRepo.findFirstByEnrolleduserid(userid);
-		if (enrollment == null) {
-			throw new RuntimeException("No enrollment found for userid: " + userid);
-		}
-
-		// Map Enrollment to DTO
-		EnrollmentDetailsDTO detailsDTO = new EnrollmentDetailsDTO(
-				enrollment.getCoursename(),
-				enrollment.getInstructorname(),
-				enrollment.getInstructorinstitution(),
-				enrollment.getEnrolleddate(),
-				enrollment.getCoursetype(),
-				enrollment.getSkilllevel(),
-				enrollment.getLanguage()
-		);
-
-
-		String emailContent = buildEmailContent(detailsDTO);
-
-
-		MailData mailData = new MailData();
-		mailData.setRecipient(userEmail);
-		mailData.setSubject("Enrollment Confirmation");
-		mailData.setMsgBody(emailContent);
-
-		emailService.sendSimpleMail(mailData);
 	}
 
 
